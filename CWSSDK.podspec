@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = "CWSSDK"
-s.version          = "1.1.0"
+s.version          = "1.1.1"
 s.summary          = "Cloud Wings iOS Shake SDK."
 s.homepage         = "https://github.com/ShakeAI/CWSSDK"
 s.license          = {
@@ -13,7 +13,7 @@ s.source           = { :git => 'https://github.com/ShakeAI/CWSSDK.git', :tag => 
 s.platform     = :ios, '9.0'
 s.requires_arc = true
 
-s.vendored_frameworks = 'frameworks/cocoapods/CWSSDK/CWSSDK.framework'
+s.vendored_frameworks = 'frameworks/cocoapods/CWSSDK.framework'
 
 s.frameworks = 'Foundation', 'UIKit'
 
