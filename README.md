@@ -1,10 +1,10 @@
-Date: 05-Jun-2017
+Date: 30-Aug-2017
 
-Revision: 2.0.1
+Revision: 2.0.2
 
 Change log:
 
-- 2.0.1
+- 2.0.2
 
 - fixed archieve error bitcode bundle could not be generated because was built without full bitcode
 
