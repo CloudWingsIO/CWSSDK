@@ -1,6 +1,0 @@
-framework module CWSSDK {
-  umbrella header "CWSSDK.h"
-
-  export *
-  module * { export * }
-}
