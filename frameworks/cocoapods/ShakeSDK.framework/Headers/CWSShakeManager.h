@@ -13,6 +13,8 @@
 
 + (void)requestPermission;
 
++ (void)switchEnvToProduction:(BOOL)production;
+
 + (void)registerWithAppId:(NSString *)appId appSecret:(NSString *)appSecret shakeForProduction:(BOOL)isProduction success:(void(^)())success failure:(void(^)(CWSError *error))failure;
 
 + (void)getProductUrlByProductId:(unsigned long long)productId success:(void(^)(NSString *productUrl))success failure:(void(^)(CWSError *error))failure;

@@ -4,9 +4,13 @@ Revision: 2.0.2
 
 Change log:
 
+- 2.0.3
+
+fix fp crash bug
+
 - 2.0.2
 
-- fixed archieve error bitcode bundle could not be generated because was built without full bitcode
+fixed archieve error bitcode bundle could not be generated because was built without full bitcode
 
 - 2.0.0
 
