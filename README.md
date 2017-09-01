@@ -4,6 +4,10 @@ Revision: 2.0.2
 
 Change log:
 
+- 2.2.0
+
+Retry bug fixed
+
 - 2.1.0
 
 Name changed
