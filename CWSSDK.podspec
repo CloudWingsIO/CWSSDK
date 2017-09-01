@@ -13,7 +13,7 @@ s.source           = { :git => 'https://github.com/ShakeAI/CWSSDK.git', :tag => 
 s.platform     = :ios, '9.0'
 s.requires_arc = true
 
-s.vendored_frameworks = 'frameworks/cocoapods/ShakeSDK.framework'
+s.vendored_frameworks = 'frameworks/cocoapods/CWSShakeSDK.framework'
 
 s.frameworks = 'Foundation', 'UIKit'
 
