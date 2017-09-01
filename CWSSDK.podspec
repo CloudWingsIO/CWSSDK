@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = "CWSSDK"
-s.version          = "2.0.3"
+s.version          = "2.1.0"
 s.summary          = "Cloud Wings iOS Shake SDK."
 s.homepage         = "https://github.com/ShakeAI/CWSSDK"
 s.license          = {

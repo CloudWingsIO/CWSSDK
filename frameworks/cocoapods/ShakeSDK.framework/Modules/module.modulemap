@@ -1,6 +1,0 @@
-framework module ShakeSDK {
-  umbrella header "ShakeSDK.h"
-
-  export *
-  module * { export * }
-}

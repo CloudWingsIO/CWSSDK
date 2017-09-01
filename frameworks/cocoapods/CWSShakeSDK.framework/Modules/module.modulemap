@@ -1,0 +1,6 @@
+framework module CWSShakeSDK {
+  umbrella header "CWSShakeSDK.h"
+
+  export *
+  module * { export * }
+}
