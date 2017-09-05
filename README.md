@@ -4,6 +4,10 @@ Revision: 2.0.2
 
 Change log:
 
+- 2.3.2
+
+Tag algorithm recognize bug fixed
+
 - 2.3.1
 
 Tag algorithm memory leak fixed
