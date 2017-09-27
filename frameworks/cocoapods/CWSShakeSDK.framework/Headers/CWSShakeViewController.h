@@ -67,9 +67,6 @@
 
 @property (assign, nonatomic) BOOL shakeEnabled;
 
-/** whether to perform audio tag or audio fingerprint (YES: Audio Tag, NO: Audio Fingerprint) */
-@property (assign, nonatomic, readonly) BOOL tagOrFp;
-
 /**
  * Simulate a shake without actually shaking device.
  */
@@ -80,9 +77,4 @@
  */
 - (void)cancelShake;
 
-/**
- * Switch between audio tag and audio fingerprint.
- * @return New value of tagOrFp (YES: Audio Tag, NO: Audio Fingerprint). You should check if the tagOrFp value has changed. If the ACR is been processing, switching will fail.
- */
-- (BOOL)switchTagOrFp;
 @end

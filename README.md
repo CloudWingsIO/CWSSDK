@@ -1,8 +1,12 @@
-Date: 30-Aug-2017
+Date: 27-Sep-2017
 
-Revision: 2.0.2
+Revision: 3.0.1
 
 Change log:
+
+- 3.0.1
+
+Combined Tag and Fp
 
 - 2.3.2
 
