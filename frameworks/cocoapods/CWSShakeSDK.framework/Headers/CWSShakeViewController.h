@@ -67,6 +67,12 @@
 
 @property (assign, nonatomic) BOOL shakeEnabled;
 
+/** Enable recording tag. Default is YES. Immutable when recording. */
+@property (assign, nonatomic) BOOL enableRecordingTag;
+
+/** Enable recording fp. Default is YES. Immutable when recording. */
+@property (assign, nonatomic) BOOL enableRecordingFp;
+
 /**
  * Simulate a shake without actually shaking device.
  */
