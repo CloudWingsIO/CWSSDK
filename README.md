@@ -1,8 +1,12 @@
 Date: 27-Sep-2017
 
-Revision: 3.0.1
+Revision: 3.1.1
 
 Change log:
+
+- 3.1.1
+
+Fixed Xcode 9 block warning
 
 - 3.0.1
 
