@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @class CWSShakeViewController, CWSUserContent, CWSError;
 
 @protocol CWSShakeDelegate <NSObject>
@@ -20,6 +21,7 @@
 - (void)shakeControllerPermissionDenied:(CWSShakeViewController *)controller;
 
 @required
+
 /**
  * Decide whether user can shake.
  * @param controller The shake controller.
@@ -53,25 +55,15 @@
  */
 - (void)shakeController:(CWSShakeViewController *)controller didFailWithError:(CWSError *)error;
 
-/**
- * Retrieving timeout.
- * @param controller The shake controller.
- */
-- (void)shakeControllerDidTimeout:(CWSShakeViewController *)controller;
-
 @end
 
 @interface CWSShakeViewController : UIViewController
 
+/** Shake delegate for this view controller. */
 @property (weak, nonatomic) id<CWSShakeDelegate> shakeDelegate;
 
+/** Enable or disable shake by assigning this field. */
 @property (assign, nonatomic) BOOL shakeEnabled;
-
-/** Enable recording tag. Default is YES. Immutable when recording. */
-@property (assign, nonatomic) BOOL enableRecordingTag;
-
-/** Enable recording fp. Default is YES. Immutable when recording. */
-@property (assign, nonatomic) BOOL enableRecordingFp;
 
 /**
  * Simulate a shake without actually shaking device.

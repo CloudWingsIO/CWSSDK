@@ -7,16 +7,33 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CWSError.h"
+
+@class CWSError;
 
 @interface CWSShakeManager : NSObject
 
+/**
+ * Request needed permissions.
+ */
 + (void)requestPermission;
 
-+ (void)switchEnvToProduction:(BOOL)production;
+/**
+ * Register app to SDK server.
+ *
+ * @param appId AppId.
+ * @param appSecret AppSecret.
+ * @param success Success callback.
+ * @param failure Failure callback.
+ */
++ (void)registerWithAppId:(NSString *)appId appSecret:(NSString *)appSecret success:(void(^)(void))success failure:(void(^)(CWSError *error))failure;
 
-+ (void)registerWithAppId:(NSString *)appId appSecret:(NSString *)appSecret shakeForProduction:(BOOL)isProduction success:(void(^)(void))success failure:(void(^)(CWSError *error))failure;
-
+/**
+ * Get product url for a specific product.
+ *
+ * @param productId Product id.
+ * @param success Success callback.
+ * @param failure Failure callback.
+ */
 + (void)getProductUrlByProductId:(unsigned long long)productId success:(void(^)(NSString *productUrl))success failure:(void(^)(CWSError *error))failure;
 
 @end

@@ -14,10 +14,9 @@ FOUNDATION_EXPORT double shakesdkVersionNumber;
 //! Project version string for shakesdk.
 FOUNDATION_EXPORT const unsigned char shakesdkVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like
-
 #import <CWSShakeSDK/CWSShakeManager.h>
 #import <CWSShakeSDK/CWSShakeViewController.h>
+#import <CWSShakeSDK/CWSError.h>
 #import <CWSShakeSDK/CWSUserContent.h>
 #import <CWSShakeSDK/CWSUserContentEvent.h>
 #import <CWSShakeSDK/CWSUserContentScene.h>

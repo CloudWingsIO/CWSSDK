@@ -1,8 +1,13 @@
-Date: 27-Sep-2017
+Date: 18-Oct-2017
 
-Revision: 3.1.1
+Revision: 3.2.0
 
 Change log:
+
+- 3.2.0
+
+Shake delegate timeout callback combined to failure callback.
+Added more comments.
 
 - 3.1.1
 
@@ -86,135 +91,93 @@ CWSSDK interface updated.
 
 ## Preface
 
-This document demonstrates how to integrate CWS SDK into your iOS project.
+This document demonstrates how to integrate CWSShakeSDK into your iOS project.
 
 ## SDK
 
-**Version**: 1.0.6
+**Version**: 3.2.0<br>
+**Description**: The SDK provides ACR(Automatic Content Recognition) functionality which allows 3rd party apps to retrieve user-defined contents by listening to audio sources.<br>
 
-**Description**: The SDK provides ACR(Automatic Content Recognition) function which allows 3rd party apps to retrieve user-defined contents by listening to audio sources.
+## Prerequisites
 
-## Prerequisities
-
-**Language**: Objective-C
-
-**IDE**: XCode 8
-
+**Language**: Objective-C<br>
+**IDE**: XCode<br>
 **Credentials**: appId & appSecret
 
-## Install
+## Installation
 
-### Installation with CocoaPods
-
-[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries like CWSSDK in your projects. You can install it with the following command:
-
-```bash
-$ gem install cocoapods
-```
-
-> CocoaPods 0.39.0+ is required to build CWSSDK 1.0.0+.
-
-#### Podfile
-
-To integrate CWSSDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
-
-```ruby
-platform :ios, '8.0'
-
-target 'Target' do
-    use_frameworks!
-    inhibit_all_warnings!
-
-    pod 'CWSSDK', '~> 1.0'
-    target 'TargetTests' do
-        inherit! :search_paths
-        # Pods for testing
-    end
-end
-```
-
-Then, run the following command:
-
-```bash
-$ pod install
-```
-
-### Manually
-
-1. Download [CWSSDK_iOS_1.0.6.zip](https://cwspro.oss-ap-southeast-1.aliyuncs.com/SDK/iOS/CWSSDK_iOS_1.0.6.zip "CWSSDK_iOS_1.0.6.zip") and unzip it. You will get the following files:
-
-	- **CWSSDK.framework**: Framework file to be linked to your iOS project.
-	- **CWSSDKDemo**: Demo iOS app project which has already integrated the SDK.
-
-2. Copy **CWSSDK.framework** to your project folder and add it to your project.
-
-3. Link the framework file to your project.
-
-	Click **Project** > **Target** > **General tab** > **Plus symbol in the Linked Frameworks and Libraries** > **Add Other...**:
-
-4. Create a new copy file phase and copy the framework file as framework.
-
-	In the same view, click **Build Phases** > **Plus symbol in the top left** > **New Copy File Phase**:
-
-## Getting Started
-
-1. Add **NSMicrophoneUsageDescription** to the **Info.plist** of your project.
-
-	Note that our SDK uses microphone when the user triggers the shake event. And it is compulsory to add the abovementioned key value pair to the Info.plist. Otherwise, the app will not be able to run.
-
-2. Import SDK header file.
+### Cocoapods
 
 ```
-#import <CWSSDK/CWSSDK.h>
+pod 'CWSSDK'
 ```
 
-7. Make your view controller extends CWSViewController.
+### Manual
 
-```
-@interface ViewController : CWSShakeViewController
-```
+1. Download [**CWSShakeSDK_iOS_3.2.0.zip**](http://cwspro.oss-ap-southeast-1.aliyuncs.com/SDK/iOS/archive/CWSShakeSDK_iOS_3.2.0.zip "CWSShakeSDK_iOS_3.2.0.zip") and unzip it. You will get the following files:
+  - **CWSShakeSDK.framework**: Framework file to be linked to your iOS project.
+  - **ShakeSDKDemo**: Demo iOS app project which has already integrated the SDK.
+  - **iOS_CWSShakeSDK_Integration_Manual.pdf**: Integration manual.
 
-8. Make your view controller or any other object confirm to CWSShakeDelegate and implements all the required methods defined in the delegate.
+2. Copy **CWSShakeSDK.framework** to your project folder and add it to your project.
+![](http://cwspro.oss-ap-southeast-1.aliyuncs.com/SDK/iOS/resource/IntegrationManual/screenshots_2/1_import.jpeg)
 
-The CWSDelegate is a protocol defined in the SDK. The declaration is as follows:
+3. Create a new copy file phase and copy the framework file as framework.<br><br>
+In the project view, click **Build Phases** > **Plus symbol in the top left** > **New Copy File Phase**:
+![](http://cwspro.oss-ap-southeast-1.aliyuncs.com/SDK/iOS/resource/IntegrationManual/screenshots_2/2_new_build_phase.jpeg)
+Switch destination to **Frameworks** and add the **CWSShakeSDK.framework** file:
+![](http://cwspro.oss-ap-southeast-1.aliyuncs.com/SDK/iOS/resource/IntegrationManual/screenshots_2/3_copy_framework_phase.jpeg)
 
-```
-@protocol CWSShakeDelegate <NSObject>
+## Usage
 
-@required
+1. Import SDK header file.
+  ```
+  #import <CWSShakeSDK/CWSShakeSDK.h>
+  ```
 
-- (void)shakeControllerDidShake:(CWSShakeViewController *)controller;
+2. Make your view controller extend CWSShakeViewController.
+  ```
+  @interface ViewController : CWSShakeViewController
+  ```
 
-- (void)shakeController:(CWSShakeViewController *)controller didSucceedWithUserContent:(CWSUserContent *)userContent;
-
-- (void)shakeControllerDidCancel:(CWSShakeViewController *)controller;
-
-- (void)shakeController:(CWSShakeViewController *)controller didFailWithError:(CWSError *)error;
-
-- (void)shakeControllerDidTimeout:(CWSShakeViewController *)controller;
-@end
-```
-
+3. Make your view controller or any other object confirm to CWSShakeDelegate and implements all the required methods defined in the delegate.<br><br>
+The CWSShakeDelegate is a protocol defined in the SDK. The declaration is as follows:
+  ```
+  @protocol CWSShakeDelegate <NSObject>
+  @optional
+  - (void)shakeControllerPermissionDenied:(CWSShakeViewController *)controller;
+  @required
+  - (BOOL)shakeControllerCanShake:(CWSShakeViewController *)controller;
+  - (void)shakeControllerDidShake:(CWSShakeViewController *)controller;
+  - (void)shakeController:(CWSShakeViewController *)controller didSucceedWithUserContent:(CWSUserContent *)userContent;
+  - (void)shakeControllerDidCancel:(CWSShakeViewController *)controller;
+  - (void)shakeController:(CWSShakeViewController *)controller didFailWithError:(CWSError *)error;
+  ```
 Confirm to this protocol:
+  ```
+  @interface ViewController () <CWSShakeDelegate>
+  ```
+Set the delegate to the view controller:
+  ```
+  self.shakeDelegate = self;
+  ```
 
-```
-@interface ViewController () <CWSShakeDelegate>
+4. Call the **requestPermission** method of the SDK to ask for needed permissions from the user.
+  ```
+  [CWSShakeManager requestPermission];
+  ```
 
-self.shakeDelegate = self;
-```
+5. Call the **register** method with your **appId** and **appSecret** before using any other functions of the SDK.
+  ```
+  [CWSShakeManager registerWithAppId:APP_ID appSecret:APP_SECRET success:^{
 
-9. Call the **register** method with your **appId** and **appSecret** before using any other functions of the SDK.
+  } failure:^(CWSError *error) {
 
-```
-[CWSSDK registerWithAppId:APP_ID appSecret:APP_SECRET success:^{
+  }];
+  ```
 
-} failure:^(CWSError *error) {
+6. Add **NSMicrophoneUsageDescription** to the **Info.plist** of your project. Note that our SDK uses microphone when the user triggers the shake event. And it is compulsory to add the abovementioned key value pair to the Info.plist. Otherwise, the app will not be able to run.
+![](http://cwspro.oss-ap-southeast-1.aliyuncs.com/SDK/iOS/resource/IntegrationManual/screenshots_2/4_microphone_privilege.jpeg)
 
-} timeout:^{
+7. Compile and run the application in a real iOS device or simulator. You may need a demo video to test the ACR functionality. Please refer to this site for demo videos: https://shake2buy.com
 
-}];
-```
-
-10. Compile and run the application.
-
-Since our SDK uses microphone to record audio and the only way to trigger the recording is by shaking, you have to test the app in a real device. You may need a demo video to test the ACR functionality. You can test your application with this demo video: https://shake2buy.com/
